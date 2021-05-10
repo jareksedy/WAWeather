@@ -3,9 +3,14 @@
 
     final class WAWeatherTests: XCTestCase {
         func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            XCTAssertEqual(WAWeather().text, "Hello, World!")
+            
+            do {
+                let weather = try WAWeather(apiKey: "32751b60b3d045ea8f1153512210905", coordinates: (lat: 45.0, lon: 45.0), days: 1)
+                XCTAssertEqual(weather.data.location.lat, 45.0)
+                XCTAssertEqual(weather.data.location.lon, 45.0)
+                
+            } catch {
+                print(error)
+            }
         }
     }
