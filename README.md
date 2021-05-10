@@ -15,7 +15,7 @@ Detailed description of weather data model is available at WeatherAPI.com.
 
 ## Installation
 
-* Add  `.package(url: "https://github.com/JohnSundell/Releases.git", from: "5.0.0")` to your `Package.swift` file's `dependencies`.
+* Add  `.package(url: "https://github.com/jareksedy/WAWeather.git", from: "1.0.0")` to your `Package.swift` file's `dependencies`.
 * Update your packages using `$ swift package update`.
 
 ## Contact me
