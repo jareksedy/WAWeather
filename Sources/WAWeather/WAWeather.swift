@@ -10,7 +10,7 @@ public class WAWeather {
     public struct WAWeatherData: Codable {
         public let location: Location
         public let current: Current
-        public let forecast: Forecast
+        public let forecast: Forecast?
         
         public struct Location: Codable {
             public let name: String
@@ -153,8 +153,8 @@ public class WAWeather {
         }
     }
     
-    public init (apiKey: String, coordinates: (lat: Double, lon: Double), days: Int) throws {
-        do { let url = "https://api.weatherapi.com/v1/forecast.json?key=\(apiKey)&q=\(coordinates.lat),\(coordinates.lon)&days=\(days)&aqi=yes&alerts=no"
+    public init (apiKey: String, coordinates: (lat: Double, lon: Double), days: Int, currentOnly: Bool = false) throws {
+        do { let url = "https://api.weatherapi.com/v1/\(currentOnly ? "current.json" : "forecast.json")?key=\(apiKey)&q=\(coordinates.lat),\(coordinates.lon)&days=\(days)&aqi=yes&alerts=no"
             do { let data = try Data(contentsOf: URL(string: url)!)
                 do { self.data = try JSONDecoder().decode(WAWeatherData.self, from: data)
                 } catch { throw error }
