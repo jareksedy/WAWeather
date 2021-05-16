@@ -5,9 +5,8 @@
         func testExample() {
             
             do {
-                let weather = try WAWeather(apiKey: "32751b60b3d045ea8f1153512210905", coordinates: (lat: 45.0, lon: 45.0), days: 1)
-                XCTAssertEqual(weather.data.location.lat, 45.0)
-                XCTAssertEqual(weather.data.location.lon, 45.0)
+                let weather = try WAWeather(apiKey: "32751b60b3d045ea8f1153512210905", coordinates: (lat: 33.543682, lon: -86.779633), days: 1)
+                XCTAssertEqual(weather.data.location.name, "East Birmingham")
                 
             } catch {
                 print(error)

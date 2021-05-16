@@ -1,3 +1,7 @@
+//
+//  Created by Jarek Šedý on 16.05.2021.
+//
+
 import Foundation
 
 public class WAWeather {
@@ -10,7 +14,7 @@ public class WAWeather {
         
         public struct Location: Codable {
             public let name: String
-            public let region: String
+            public let region: String?
             public let country: String
             public let lat: Double
             public let lon: Double
@@ -150,13 +154,11 @@ public class WAWeather {
     }
     
     public init (apiKey: String, coordinates: (lat: Double, lon: Double), days: Int) throws {
-        let url = "https://api.weatherapi.com/v1/forecast.json?key=\(apiKey)&q=\(coordinates.lat),\(coordinates.lon)&days=\(days)&aqi=yes&alerts=no"
-        
-        do { let data = try Data(contentsOf: URL(string: url)!)
-            
-            do { self.data = try JSONDecoder().decode(WAWeatherData.self, from: data)
-                
+        do { let url = "https://api.weatherapi.com/v1/forecast.json?key=\(apiKey)&q=\(coordinates.lat),\(coordinates.lon)&days=\(days)&aqi=yes&alerts=no"
+            do { let data = try Data(contentsOf: URL(string: url)!)
+                do { self.data = try JSONDecoder().decode(WAWeatherData.self, from: data)
+                } catch { throw error }
             } catch { throw error }
-        } catch { throw error }
+        } catch {throw error }
     }
 }
