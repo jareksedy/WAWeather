@@ -153,7 +153,7 @@ public class WAWeather {
         }
     }
     
-    public init (apiKey: String, coordinates: (lat: Double, lon: Double), days: Int, currentOnly: Bool = false) throws {
+    public init (apiKey: String, coordinates: (lat: Double, lon: Double), days: Int = 1, currentOnly: Bool = false) throws {
         do { let url = "https://api.weatherapi.com/v1/\(currentOnly ? "current.json" : "forecast.json")?key=\(apiKey)&q=\(coordinates.lat),\(coordinates.lon)&days=\(days)&aqi=yes&alerts=no"
             do { let data = try Data(contentsOf: URL(string: url)!)
                 do { self.data = try JSONDecoder().decode(WAWeatherData.self, from: data)
